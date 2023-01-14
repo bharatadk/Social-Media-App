@@ -20,27 +20,28 @@ export const Account = () => {
 	const dispatch = useDispatch()
     const { user, loading: userLoading } = useSelector((state) => state.userReducer);
 
-    const {
-        loading,
-        posts,
-        error: postError,
-    } = useSelector((state) => state.postOfFollowingReducer);
+    const {        loading,        posts,        error: postError,    } = useSelector((state) => state.myPostsReducer);
 
     const {
-        loading: loadingUsers,
-        users,
-        error: errorUsers,
-    } = useSelector((state) => state.allUsersReducer);
+        loading: loadingUsers,        users,        error: errorUsers,    } = useSelector((state) => state.allUsersReducer);
     
-    const { error: likedError, message: likedMessage } = useSelector(
-        (state) => state.likeReducer
-    );
+    const { error: likedError, message: likedMessage } = useSelector(        (state) => state.likeReducer);
 
     const [followingToggle,setFollowingToggle] = useState(false)
     const [followersToggle,setFollowersToggle] = useState(false)
 
 const deleteProfileHandler = () =>{
 
+}
+
+
+
+
+
+const addCommentHandler = (e) => {
+  e.preventDefault()
+  dispatch(addCommentOnPost(postId,commentValue))
+  setCommentToggle(false)
 }
 
 const  logoutHandler = async() => {

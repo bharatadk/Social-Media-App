@@ -20,38 +20,25 @@ export const NewPost =  () => {
 
 
 
-		
+const handleImageChange = (e) => {
+    const file = e.target.files[0];
 
-const cloudinary = async() => {
-			const formData = new FormData()
+    const Reader = new FileReader();
+    Reader.readAsDataURL(file);
 
-		formData.append("file",image)
-		formData.append("upload_preset","bco3re8y")
-		formData.append("cloud_name","dqmyn40bs")
+    Reader.onload = () => {
+      if (Reader.readyState === 2) {
+        setImage(Reader.result);
+      }
+    };
+  };
 
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    await dispatch(createNewPost(caption, image));
+    dispatch(loadUser());
+  };
 
-          try {
-            const resp = await fetch("https://api.cloudinary.com/v1_1/dqmyn40bs/image/upload",{method : "post",body:formData})
-            const res= await resp.json()
-            // console.log(res.public_id)
-             let {public_id,url} = res
-             console.log(public_id,url)
-             return [public_id,url]
-
-    }catch(err){
-        console.log(err)
-    }
-    
-    
-}
-
-	const submitHandler = async(e) => {
-		e.preventDefault()
-
-		const [public_id,url] =await cloudinary()           
-		await dispatch(createNewPost(caption,public_id,url))
-		await dispatch(loadUser())
-	}
 
 
 	useEffect(()=>{
@@ -73,7 +60,7 @@ const cloudinary = async() => {
         <Typography variant="h5">New Post</Typography>
 
         {image && <div className="imgContainer"><img src={image} alt="post" width="100%"/></div>}
-        <input type="file" accept="image/*" onChange={(e)=>setImage(e.target.files[0])} />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
         <textarea
           type="text"
           placeholder="Caption..."

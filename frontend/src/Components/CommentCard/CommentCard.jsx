@@ -1,10 +1,10 @@
 import { Button, Typography } from "@mui/material";
-import React from "react";
+import React,{useEffect} from "react";
 import { Link } from "react-router-dom";
 import "./CommentCard.css";
 import { Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCommentOnPost } from "../../Actions/Post.js";
+import { deleteCommentOnPost,getMyPosts } from "../../Actions/Post.js";
 import { getFollowingUserPosts } from "../../Actions/User.js";
 
 export const CommentCard = ({
@@ -19,15 +19,29 @@ export const CommentCard = ({
     const { user } = useSelector((state) => state.userReducer);
     const dispatch = useDispatch();
 
-    const deleteCommentHandle = () => {
-        dispatch(deleteCommentOnPost(postId, commentId));
+    const deleteCommentHandle = async () => {
+        await dispatch(deleteCommentOnPost(postId, commentId));
 
         if (isAccount) {
-            // dispatch(getMyPosts());
+            await dispatch(getMyPosts());
         } else {
-            dispatch(getFollowingUserPosts());
+            await dispatch(getFollowingUserPosts());
         }
     };
+
+
+useEffect(()=>{
+
+        async function fun(){
+          if (isAccount) {
+            await dispatch(getMyPosts());
+        } else {
+           await  dispatch(getFollowingUserPosts());
+        }          
+    }
+    fun()
+
+},[dispatch])
 
     return (
         <div className="commentUser">

@@ -1,38 +1,37 @@
 import { Post } from "../models/Post.js";
 import { User } from "../models/User.js";
 import mongoose from "mongoose";
-
+import cloudinary from "cloudinary"
 
 // CreatePost
 export const createPost = async (req, res) => {
     try {
-            console.log("here")
-    // const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
-    //   folder: "posts",
-    // });
 
-    const {public_id,url} = req.body
-
-        const newPostData = {
-            caption: req.body.caption,
-            image: {
-                public_id,
-                url,
-            },
-            owner: req.user._id,
-        };
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
+      folder: "posts",
+    });
+    const newPostData = {
+      caption: req.body.caption,
+      image: {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      },
+      owner: req.user._id,
+    };
+   
 
         const post = await Post.create(newPostData);
 
         const user = await User.findById(req.user._id);
 
         // save post_created_id in user.posts[] field
-        user.posts.push(post._id);
+        user.posts.unshift(post._id);
         await user.save();
+
 
         res.status(201).json({
             success: true,
-            post,
+            message:"Post Created",
         });
     } catch (err) {
         res.status(500).json({
@@ -60,6 +59,7 @@ export const deletePost = async (req, res) => {
                 message: "Unauthorized User",
             });
         }
+        await cloudinary.v2.uploader.destroy(post.image.public_id);
 
         await post.remove();
 

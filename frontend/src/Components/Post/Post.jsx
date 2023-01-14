@@ -11,19 +11,20 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowingUserPosts, getAllUsers } from "../../Actions/User.js";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
     addCommentOnPost,
-    // deletePost,
+    deletePost,
     likePost,
-    // updatePost,
+    updatePost,
 } from "../../Actions/Post.js";
 
-// import {
+import {
 //   getFollowingPosts,
-//    getMyPosts,
+   getMyPosts,
 //     loadUser
-// } from "../../Actions/User";
+} from "../../Actions/Post.js";
 
 import { User } from "../User/User.jsx";
 import { CommentCard } from "../CommentCard/CommentCard.jsx";
@@ -49,27 +50,45 @@ export const Post = ({
     const [likesUser, setLikesUser] = useState(false);
     const [commentValue, setCommentValue] = useState("");
     const [commentToggle, setCommentToggle] = useState(false);
-
+  const [captionValue, setCaptionValue] = useState(caption);
+  const [captionToggle, setCaptionToggle] = useState(false);
 
     const handleLike = async () => {
         setLiked(!liked);
         await dispatch(likePost(postId));
         if (isAccount) {
+          dispatch(getMyPosts())
 
         } else {
             dispatch(getFollowingUserPosts());
         }
     };
 
-const addCommentHandler = (e) => {
+const addCommentHandler = async(e) => {
   e.preventDefault()
-  dispatch(addCommentOnPost(postId,commentValue))
+  await dispatch(addCommentOnPost(postId,commentValue))
+        if (isAccount) {
+        await  dispatch(getMyPosts())
+
+        } else {
+         await   dispatch(getFollowingUserPosts());
+        }
+
   setCommentToggle(false)
 }
 
-const deletePostHandler =() => {
-    console.log('delete post')
+const deletePostHandler =async(e) => {
+    e.preventDefault();
+    await dispatch(deletePost(postId));
+    await dispatch(getMyPosts());
 }
+
+
+ const updateCaptionHandler = async(e) => {
+    e.preventDefault();
+    await dispatch(updatePost(captionValue, postId));
+    await dispatch(getMyPosts());
+  };
 
     useEffect(() => {
         likes.forEach(
@@ -78,9 +97,11 @@ const deletePostHandler =() => {
                     setLiked(true);
                 }
             },
-            [dispatch,likes,commentToggle, user._id]
+            
         );
-    });
+
+    },[dispatch,likes,commentToggle, user._id]);
+
 
 
 
@@ -88,7 +109,7 @@ return (
         <div className="post">
             <div className="postHeader">
                 {isAccount ? (
-                    <Button>
+          <Button onClick={() => setCaptionToggle(!captionToggle)}>
                         {" "}
                         <MoreVert />{" "}
                     </Button>
@@ -147,6 +168,36 @@ return (
                     </Button>
                 ) : null}
             </div>
+
+
+
+
+      <Dialog
+        open={captionToggle}
+        onClose={() => setCaptionToggle(!captionToggle)}
+      >
+        <div className="DialogBox">
+          <Typography variant="h4">Update Caption</Typography>
+
+          <form className="commentForm" onSubmit={updateCaptionHandler}>
+            <input
+              type="text"
+              value={captionValue}
+              onChange={(e) => setCaptionValue(e.target.value)}
+              placeholder="Caption Here..."
+              required
+            />
+
+            <Button type="submit" variant="contained">
+              Update
+            </Button>
+          </form>
+        </div>
+      </Dialog>
+
+
+
+
 
             <Dialog open={likesUser} onClose={() => setLikesUser(!likesUser)}>
                 <div className="DialogBox">

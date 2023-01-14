@@ -16,6 +16,12 @@ const deleteCommentFailure = createAction("deleteCommentFailure");
 const addPostRequest = createAction("addPostRequest");
 const addPostSuccess = createAction("addPostSuccess");
 const addPostFailure = createAction("addPostFailure");
+const updateCaptionRequest = createAction("updateCaptionRequest");
+const updateCaptionSuccess = createAction("updateCaptionSuccess");
+const updateCaptionFailure = createAction("updateCaptionFailure");
+const deleteCaptionRequest = createAction("deleteCaptionRequest");
+const deleteCaptionSuccess = createAction("deleteCaptionSuccess");
+const deleteCaptionFailure = createAction("deleteCaptionFailure");
 const clearErrors = createAction("clearErrors");
 const clearMessage = createAction("clearMessage");
 
@@ -81,6 +87,31 @@ export const likeReducer = createReducer(initialState,
             state.error = action.payload;
         })
 
+
+        .addCase(updateCaptionRequest, (state) => {
+            state.loading = true;
+        })
+        .addCase(updateCaptionSuccess, (state, action) => {
+            state.loading = false;
+            state.message = action.payload;
+        })
+        .addCase(updateCaptionFailure, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+
+
+        .addCase(deleteCaptionRequest, (state) => {
+            state.loading = true;
+        })
+        .addCase(deleteCaptionSuccess, (state, action) => {
+            state.loading = false;
+            state.message = action.payload;
+        })
+        .addCase(deleteCaptionFailure, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
 
 
         .addCase(clearErrors, (state) => {
