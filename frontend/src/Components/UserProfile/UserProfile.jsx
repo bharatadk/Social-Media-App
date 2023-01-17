@@ -85,6 +85,8 @@ export const UserProfile = () => {
     <Loader />
   ) : (
     <div className="account">
+            <div className="accoundLeftAds"></div>
+
       <div className="accountleft">
         {posts && posts.length > 0 ? (
           posts.map((post) => (

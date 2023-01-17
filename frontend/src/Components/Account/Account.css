@@ -1,7 +1,7 @@
 .account {
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 3fr 1fr;
   height: 92vh;
 }
 

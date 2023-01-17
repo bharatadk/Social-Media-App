@@ -1,15 +1,17 @@
 .header{
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	position: sticky;
-	top: 0;
+	/*position: sticky;*/
+	left: 0;
+	width: 50px;
 }
 
 .header > a {
 	width:  2vmax;
 	height:  2vmax;
-	margin:  1vmax 4vmax;
+	margin:  3vmax 4vmax;
 }
 
 .header > a > svg {

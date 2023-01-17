@@ -77,6 +77,7 @@ return(  (loading || loadingUsers ) ? ( <Loader />  ) :
  (
 
     <div className="account">
+        <div className="accoundLeftAds"></div>
 
   <div className="accountleft">
         {(posts && posts.length > 0) ? (
@@ -99,7 +100,6 @@ return(  (loading || loadingUsers ) ? ( <Loader />  ) :
           <Typography variant="h6">You have not made any post</Typography>
         )}
       </div>
-
           <div className="accountright">
         <Avatar
           src={user.avatar.url}

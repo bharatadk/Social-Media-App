@@ -29,11 +29,16 @@ function App() {
 	},[])
 	return (
 		<Router> 
+		<div className="main">
+		<div className="leftNavbar">
 		{isAuthenticated && <Header/> }
-
+		</div>
+			<div className="rightSpace">
 			<Routes>
 			{isAuthenticated ? (
 				<>
+
+
 			<Route path = "/" element={ <Home/> } />
 			<Route path = "/account" element={ <Account/> } />
 			<Route path = "/newPost" element={ <NewPost/> } />
@@ -44,9 +49,11 @@ function App() {
 			<Route path = "*" element={ <NotFound/> } />
 
 
+				
 
 			</>
-				)
+
+		)
 
 
 				:(	<>
@@ -56,8 +63,9 @@ function App() {
 					<Route path = "/reset/password/:token" element={ <ResetPassword/> } />
 					</> )}
 			</Routes>
+			</div>
 
-					
+		</div>			
 		</Router>
 	)
 }

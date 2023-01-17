@@ -15,10 +15,11 @@
     align-items: center;
     padding: 2vmax;
     box-sizing: border-box;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
 }
 .homeright {
     padding: 2vmax;
+    margin-top:2vmax;
     box-sizing: border-box;
     overflow-y: auto;
 }

@@ -8,6 +8,8 @@ import { getFollowingUserPosts, getAllUsers } from "../../Actions/User.js";
 import { Loader } from "../Loader/Loader.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {Header} from "../Header/Header.jsx"
+
 
 export const Home = () => {
     const dispatch = useDispatch();
@@ -82,7 +84,7 @@ export const Home = () => {
             </div>
 
             <div className="homeright">
-                <h3 style={{marginLeft:"15px", marginBottom:"10px"}}>Friends</h3>
+                <h3 style={{marginLeft:"10px", marginBottom:"10px"}}>All Users</h3>
                 {users && users.length > 0 ? (
                     users.map((user) => (
                         <User
