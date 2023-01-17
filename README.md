@@ -20,3 +20,10 @@ https://user-images.githubusercontent.com/51126350/212901445-101b20cd-526f-4b04-
 $ git clone https://github.com/bharatadk/Social-Media-App.git
 $ yarn # or npm i
 ```
+
+# Usage (run fullstack app on your machine)
+
+## Prerequisites
+- [MongoDB](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3)
+- [Node](https://nodejs.org/en/download/) ^ 18.0
+- [npm](https://nodejs.org/en/download/package-manager/)
