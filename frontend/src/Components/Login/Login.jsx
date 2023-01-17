@@ -7,13 +7,12 @@ import { loginUser } from "../../Actions/User.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-    
-    const {error} = useSelector((state)=>state.userReducer)
+
+    const { error } = useSelector((state) => state.userReducer);
     const { message } = useSelector((state) => state.likeReducer);
 
     const loginHandler = (e) => {
@@ -21,20 +20,17 @@ export const Login = () => {
         dispatch(loginUser(email, password));
     };
 
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+            dispatch({ type: "clearErrors" });
+        }
+        if (message) {
+            toast.success(message);
+            dispatch({ type: "clearMessage" });
+        }
+    }, [alert, error, dispatch, message]);
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      dispatch({ type: "clearErrors" });
-    }
-    if (message) {
-      toast.success(message);
-      dispatch({ type: "clearMessage" });
-    }
-  }, [alert, error, dispatch, message]);
-
-
-  
     return (
         <div className="login">
             <form className="loginForm" onSubmit={loginHandler}>

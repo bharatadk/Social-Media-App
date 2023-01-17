@@ -1,10 +1,10 @@
 import { Button, Typography } from "@mui/material";
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./CommentCard.css";
 import { Delete } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCommentOnPost,getMyPosts } from "../../Actions/Post.js";
+import { deleteCommentOnPost, getMyPosts } from "../../Actions/Post.js";
 import { getFollowingUserPosts } from "../../Actions/User.js";
 
 export const CommentCard = ({
@@ -29,25 +29,15 @@ export const CommentCard = ({
         }
     };
 
-
-useEffect(()=>{
-
-        async function fun(){
-          if (isAccount) {
-            await dispatch(getMyPosts());
-        } else {
-           await  dispatch(getFollowingUserPosts());
-        }          
-    }
-    fun()
-
-},[dispatch])
+    useEffect(() => {}, [dispatch]);
 
     return (
         <div className="commentUser">
             <Link to={`/user/${userId}`}>
                 <img src={avatar} alt={name} />
-                <Typography style={{ minWidth: "6vmax",margin:"0 5px" }}>{name}</Typography>
+                <Typography style={{ minWidth: "6vmax", margin: "0 5px" }}>
+                    {name}
+                </Typography>
             </Link>
             <Typography>{comment}</Typography>
 

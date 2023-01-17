@@ -1,24 +1,22 @@
 import { Post } from "../models/Post.js";
 import { User } from "../models/User.js";
 import mongoose from "mongoose";
-import cloudinary from "cloudinary"
+import cloudinary from "cloudinary";
 
 // CreatePost
 export const createPost = async (req, res) => {
     try {
-
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
-      folder: "posts",
-    });
-    const newPostData = {
-      caption: req.body.caption,
-      image: {
-        public_id: myCloud.public_id,
-        url: myCloud.secure_url,
-      },
-      owner: req.user._id,
-    };
-   
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.image, {
+            folder: "posts",
+        });
+        const newPostData = {
+            caption: req.body.caption,
+            image: {
+                public_id: myCloud.public_id,
+                url: myCloud.secure_url,
+            },
+            owner: req.user._id,
+        };
 
         const post = await Post.create(newPostData);
 
@@ -28,10 +26,9 @@ export const createPost = async (req, res) => {
         user.posts.unshift(post._id);
         await user.save();
 
-
         res.status(201).json({
             success: true,
-            message:"Post Created",
+            message: "Post Created",
         });
     } catch (err) {
         res.status(500).json({
@@ -83,54 +80,52 @@ export const deletePost = async (req, res) => {
 };
 
 // Like-Unlike-the-Post
-export const likeAndUnlikePost = async (req, res) =>  {
-  try {
-    const post = await Post.findById(req.params.id);
+export const likeAndUnlikePost = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
 
-    if (!post) {
-      return res.status(404).json({
-        success: false,
-        message: "Post not found",
-      });
-    }
-
-    let found=false;
-
-    post.likes.forEach((item)=>{
-
-        if(item.user==req.user._id.toString()){
-            found = true;
+        if (!post) {
+            return res.status(404).json({
+                success: false,
+                message: "Post not found",
+            });
         }
-    })
 
+        let found = false;
 
-    if (found) {
-      const index = post.likes.indexOf(req.user._id);
+        post.likes.forEach((item) => {
+            if (item.user == req.user._id.toString()) {
+                found = true;
+            }
+        });
 
-      post.likes.splice(index, 1);
+        if (found) {
+            const index = post.likes.indexOf(req.user._id);
 
-      await post.save();
+            post.likes.splice(index, 1);
 
-      return res.status(200).json({
-        success: true,
-        message: "Post Unliked",
-      });
-    } else {
-      post.likes.push({user:req.user._id});
+            await post.save();
 
-      await post.save();
+            return res.status(200).json({
+                success: true,
+                message: "Post Unliked",
+            });
+        } else {
+            post.likes.push({ user: req.user._id });
 
-      return res.status(200).json({
-        success: true,
-        message: "Post Liked",
-      });
+            await post.save();
+
+            return res.status(200).json({
+                success: true,
+                message: "Post Liked",
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
     }
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
 };
 
 // followUser
@@ -187,27 +182,26 @@ export const followUser = async (req, res) => {
 };
 
 export const getPostsOfFollowing = async (req, res) => {
-  try {
-    const user = await User.findById(req.user._id);
+    try {
+        const user = await User.findById(req.user._id);
 
-    const posts = await Post.find({
-      owner: {
-        $in: user.following,
-      },
-    }).populate(["owner", "likes.user", "comments.user"]);
+        const posts = await Post.find({
+            owner: {
+                $in: user.following,
+            },
+        }).populate(["owner", "likes.user", "comments.user"]);
 
-    res.status(200).json({
-      success: true,
-      posts: posts.reverse(),
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
+        res.status(200).json({
+            success: true,
+            posts: posts.reverse(),
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message,
+        });
+    }
 };
-
 
 // updatePost
 
@@ -254,7 +248,6 @@ export const updateCaption = async (req, res) => {
 // addComment
 export const addComment = async (req, res) => {
     try {
-
         const post = await Post.findById(req.params.id);
         if (!post) {
             res.status(404).json({

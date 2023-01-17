@@ -63,45 +63,37 @@ export const userReducer = createReducer(initialState, (builder) => {
             state.error = action.payload;
         })
 
-
         .addCase(UpdateProfileRequest, (state) => {
             state.loading = true;
         })
         .addCase(UpdateProfileSuccess, (state, action) => {
             state.loading = false;
-                state.message = action.payload;
-
+            state.message = action.payload;
         })
         .addCase(UpdateProfileFailure, (state, action) => {
             state.loading = false;
             state.error = action.payload;
         })
 
-
         .addCase(UpdatePasswordRequest, (state) => {
             state.loading = true;
         })
         .addCase(UpdatePasswordSuccess, (state, action) => {
             state.loading = false;
-            state.message =  action.payload;
+            state.message = action.payload;
             state.isAuthenticated = false;
-
         })
         .addCase(UpdatePasswordFailure, (state, action) => {
             state.loading = false;
             state.error = action.payload;
         })
 
-
-
-
         .addCase(DeleteProfileRequest, (state) => {
             state.loading = true;
         })
         .addCase(DeleteProfileSuccess, (state, action) => {
             state.loading = false;
-            state.message =  action.payload;
-
+            state.message = action.payload;
         })
         .addCase(DeleteProfileFailure, (state, action) => {
             state.loading = false;
@@ -113,8 +105,7 @@ export const userReducer = createReducer(initialState, (builder) => {
         })
         .addCase(ForgotPasswordSuccess, (state, action) => {
             state.loading = false;
-            state.message =  action.payload;
-
+            state.message = action.payload;
         })
         .addCase(ForgotPasswordFailure, (state, action) => {
             state.loading = false;
@@ -126,14 +117,12 @@ export const userReducer = createReducer(initialState, (builder) => {
         })
         .addCase(ResetPasswordSuccess, (state, action) => {
             state.loading = false;
-            state.message =  action.payload;
-
+            state.message = action.payload;
         })
         .addCase(ResetPasswordFailure, (state, action) => {
             state.loading = false;
             state.error = action.payload;
         })
-
 
         .addCase(LoadUserRequest, (state) => {
             state.loading = true;
@@ -148,8 +137,6 @@ export const userReducer = createReducer(initialState, (builder) => {
             state.error = action.payload;
         })
 
-
-
         .addCase(LogoutUserRequest, (state) => {
             state.loading = true;
         })
@@ -163,8 +150,6 @@ export const userReducer = createReducer(initialState, (builder) => {
             state.error = action.payload;
             state.isAuthenticated = true;
         })
-
-
 
         .addCase(clearErrors, (state) => {
             state.error = null;
@@ -235,9 +220,6 @@ export const allUsersReducer = createReducer(
     }
 );
 
-
-
-
 ////////////////////////////////
 
 const UserProfileRequest = createAction("UserProfileRequest");
@@ -262,7 +244,6 @@ export const userProfileReducer = createReducer(
             .addCase(UserProfileFailure, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            })
-
+            });
     }
 );

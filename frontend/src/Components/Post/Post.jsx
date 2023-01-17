@@ -21,9 +21,7 @@ import {
 } from "../../Actions/Post.js";
 
 import {
-//   getFollowingPosts,
-   getMyPosts,
-//     loadUser
+    getMyPosts,
 } from "../../Actions/Post.js";
 
 import { User } from "../User/User.jsx";
@@ -41,75 +39,62 @@ export const Post = ({
     isDelete = false,
     isAccount = false,
 }) => {
-
-
-
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.userReducer);
     const [liked, setLiked] = useState(false);
     const [likesUser, setLikesUser] = useState(false);
     const [commentValue, setCommentValue] = useState("");
     const [commentToggle, setCommentToggle] = useState(false);
-  const [captionValue, setCaptionValue] = useState(caption);
-  const [captionToggle, setCaptionToggle] = useState(false);
+    const [captionValue, setCaptionValue] = useState(caption);
+    const [captionToggle, setCaptionToggle] = useState(false);
 
     const handleLike = async () => {
         setLiked(!liked);
         await dispatch(likePost(postId));
         if (isAccount) {
-          dispatch(getMyPosts())
-
+            dispatch(getMyPosts());
         } else {
             dispatch(getFollowingUserPosts());
         }
     };
 
-const addCommentHandler = async(e) => {
-  e.preventDefault()
-  await dispatch(addCommentOnPost(postId,commentValue))
+    const addCommentHandler = async (e) => {
+        e.preventDefault();
+        await dispatch(addCommentOnPost(postId, commentValue));
         if (isAccount) {
-        await  dispatch(getMyPosts())
-
+            await dispatch(getMyPosts());
         } else {
-         await   dispatch(getFollowingUserPosts());
+            await dispatch(getFollowingUserPosts());
         }
 
-  setCommentToggle(false)
-}
+        setCommentToggle(false);
+    };
 
-const deletePostHandler =async(e) => {
-    e.preventDefault();
-    await dispatch(deletePost(postId));
-    await dispatch(getMyPosts());
-}
+    const deletePostHandler = async (e) => {
+        e.preventDefault();
+        await dispatch(deletePost(postId));
+        await dispatch(getMyPosts());
+    };
 
-
- const updateCaptionHandler = async(e) => {
-    e.preventDefault();
-    await dispatch(updatePost(captionValue, postId));
-    await dispatch(getMyPosts());
-  };
+    const updateCaptionHandler = async (e) => {
+        e.preventDefault();
+        await dispatch(updatePost(captionValue, postId));
+        await dispatch(getMyPosts());
+    };
 
     useEffect(() => {
-        likes.forEach(
-            (item) => {
-                if (item.user._id === user._id) {
-                    setLiked(true);
-                }
-            },
-            
-        );
+        likes.forEach((item) => {
+            if (item.user._id === user._id) {
+                setLiked(true);
+            }
+        });
+    }, [dispatch, likes, commentToggle, user._id]);
 
-    },[dispatch,likes,commentToggle, user._id]);
-
-
-
-
-return (
+    return (
         <div className="post">
             <div className="postHeader">
                 {isAccount ? (
-          <Button onClick={() => setCaptionToggle(!captionToggle)}>
+                    <Button onClick={() => setCaptionToggle(!captionToggle)}>
                         {" "}
                         <MoreVert />{" "}
                     </Button>
@@ -169,35 +154,31 @@ return (
                 ) : null}
             </div>
 
+            <Dialog
+                open={captionToggle}
+                onClose={() => setCaptionToggle(!captionToggle)}
+            >
+                <div className="DialogBox">
+                    <Typography variant="h4">Update Caption</Typography>
 
+                    <form
+                        className="commentForm"
+                        onSubmit={updateCaptionHandler}
+                    >
+                        <input
+                            type="text"
+                            value={captionValue}
+                            onChange={(e) => setCaptionValue(e.target.value)}
+                            placeholder="Caption Here..."
+                            required
+                        />
 
-
-      <Dialog
-        open={captionToggle}
-        onClose={() => setCaptionToggle(!captionToggle)}
-      >
-        <div className="DialogBox">
-          <Typography variant="h4">Update Caption</Typography>
-
-          <form className="commentForm" onSubmit={updateCaptionHandler}>
-            <input
-              type="text"
-              value={captionValue}
-              onChange={(e) => setCaptionValue(e.target.value)}
-              placeholder="Caption Here..."
-              required
-            />
-
-            <Button type="submit" variant="contained">
-              Update
-            </Button>
-          </form>
-        </div>
-      </Dialog>
-
-
-
-
+                        <Button type="submit" variant="contained">
+                            Update
+                        </Button>
+                    </form>
+                </div>
+            </Dialog>
 
             <Dialog open={likesUser} onClose={() => setLikesUser(!likesUser)}>
                 <div className="DialogBox">

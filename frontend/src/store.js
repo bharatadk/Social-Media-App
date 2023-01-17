@@ -5,15 +5,12 @@ import {
     postOfFollowingReducer,
     allUsersReducer,
     userProfileReducer,
-
 } from "./Reducers/User.js";
-
 
 import {
     likeReducer,
     myPostsReducer,
     userPostsReducer,
-
 } from "./Reducers/Post.js";
 
 export const store = configureStore({
@@ -25,7 +22,7 @@ export const store = configureStore({
         myPostsReducer,
         userProfileReducer,
         userPostsReducer,
-            },
+    },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,

@@ -8,8 +8,7 @@ import { getFollowingUserPosts, getAllUsers } from "../../Actions/User.js";
 import { Loader } from "../Loader/Loader.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {Header} from "../Header/Header.jsx"
-
+import { Header } from "../Header/Header.jsx";
 
 export const Home = () => {
     const dispatch = useDispatch();
@@ -23,37 +22,33 @@ export const Home = () => {
         users,
         error: errorUsers,
     } = useSelector((state) => state.allUsersReducer);
-    
+
     const { error: likedError, message: likedMessage } = useSelector(
         (state) => state.likeReducer
     );
 
     useEffect(() => {
-        (async function(){
-         await dispatch(getFollowingUserPosts());
-        await dispatch(getAllUsers());           
-        })()
-
-    }, [toast,dispatch,]);
-
+        (async function () {
+            await dispatch(getFollowingUserPosts());
+            await dispatch(getAllUsers());
+        })();
+    }, [toast, dispatch]);
 
     useEffect(() => {
-
-        (async function(){
-        if (postError) {
-            toast.error(postError);
-            await dispatch({ type: "clearErrors" });
-        }
-        if (likedError) {
-            toast.error(likedError);
-            await dispatch({ type: "clearErrors" });
-        }
-        if (likedMessage) {
-            toast.success(likedMessage);
-            await dispatch({ type: "clearMessage" });
-        }            
-    })()
-
+        (async function () {
+            if (postError) {
+                toast.error(postError);
+                await dispatch({ type: "clearErrors" });
+            }
+            if (likedError) {
+                toast.error(likedError);
+                await dispatch({ type: "clearErrors" });
+            }
+            if (likedMessage) {
+                toast.success(likedMessage);
+                await dispatch({ type: "clearMessage" });
+            }
+        })();
     }, [likedError, likedMessage, postError, dispatch]);
 
     return loading || loadingUsers ? (
@@ -84,7 +79,9 @@ export const Home = () => {
             </div>
 
             <div className="homeright">
-                <h3 style={{marginLeft:"10px", marginBottom:"10px"}}>All Users</h3>
+                <h3 style={{ marginLeft: "10px", marginBottom: "10px" }}>
+                    All Users
+                </h3>
                 {users && users.length > 0 ? (
                     users.map((user) => (
                         <User
