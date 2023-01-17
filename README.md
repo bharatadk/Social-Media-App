@@ -17,6 +17,6 @@ https://user-images.githubusercontent.com/51126350/212901445-101b20cd-526f-4b04-
 
 ## clone or download
 ```terminal
-$ git clone https://github.com/amazingandyyy/mern.git
+$ git clone https://github.com/bharatadk/Social-Media-App.git
 $ yarn # or npm i
 ```
