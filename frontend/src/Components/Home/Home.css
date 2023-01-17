@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     height: 100vh;
+
 }
 
 .homeleft {
@@ -14,6 +15,7 @@
     align-items: center;
     padding: 2vmax;
     box-sizing: border-box;
+    border-radius: 10px;
 }
 .homeright {
     padding: 2vmax;
@@ -27,6 +29,9 @@
     text-decoration: none;
     color: rgba(0, 0, 0, 0.507);
     transition: all 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    margin: 15px 0px;
 }
 .homeUser > img {
     height: 3vmax;

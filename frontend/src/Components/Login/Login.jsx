@@ -4,34 +4,37 @@ import { Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../Actions/User.js";
-// import { useAlert } from "react-alert";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    console.log(password);
     const dispatch = useDispatch();
-    // const alert = useAlert();
-
-    // const { error } = useSelector((state) => state.user);
-    // const { message } = useSelector((state) => state.like);
+    
+    const {error} = useSelector((state)=>state.userReducer)
+    const { message } = useSelector((state) => state.likeReducer);
 
     const loginHandler = (e) => {
         e.preventDefault();
-
         dispatch(loginUser(email, password));
     };
 
-    // useEffect(() => {
-    //   if (error) {
-    //     alert.error(error);
-    //     dispatch({ type: "clearErrors" });
-    //   }
-    //   if (message) {
-    //     alert.success(message);
-    //     dispatch({ type: "clearMessage" });
-    //     // }, [alert, error, dispatch, message]);
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: "clearErrors" });
+    }
+    if (message) {
+      toast.success(message);
+      dispatch({ type: "clearMessage" });
+    }
+  }, [alert, error, dispatch, message]);
+
+
+  
     return (
         <div className="login">
             <form className="loginForm" onSubmit={loginHandler}>

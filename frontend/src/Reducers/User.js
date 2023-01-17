@@ -10,6 +10,24 @@ const LoginFailure = createAction("LoginFailure");
 const RegisterRequest = createAction("RegisterRequest");
 const RegisterSuccess = createAction("RegisterSuccess");
 const RegisterFailure = createAction("RegisterFailure");
+const UpdateProfileRequest = createAction("UpdateProfileRequest");
+const UpdateProfileSuccess = createAction("UpdateProfileSuccess");
+const UpdateProfileFailure = createAction("UpdateProfileFailure");
+const UpdatePasswordRequest = createAction("UpdatePasswordRequest");
+const UpdatePasswordSuccess = createAction("UpdatePasswordSuccess");
+const UpdatePasswordFailure = createAction("UpdatePasswordFailure");
+const DeleteProfileRequest = createAction("DeleteProfileRequest");
+const DeleteProfileSuccess = createAction("DeleteProfileSuccess");
+const DeleteProfileFailure = createAction("DeleteProfileFailure");
+
+const ForgotPasswordRequest = createAction("ForgotPasswordRequest");
+const ForgotPasswordSuccess = createAction("ForgotPasswordSuccess");
+const ForgotPasswordFailure = createAction("ForgotPasswordFailure");
+
+const ResetPasswordRequest = createAction("ResetPasswordRequest");
+const ResetPasswordSuccess = createAction("ResetPasswordSuccess");
+const ResetPasswordFailure = createAction("ResetPasswordFailure");
+
 const LoadUserRequest = createAction("LoadUserRequest");
 const LoadUserSuccess = createAction("LoadUserSuccess");
 const LoadUserFailure = createAction("LoadUserFailure");
@@ -44,6 +62,79 @@ export const userReducer = createReducer(initialState, (builder) => {
             state.loading = false;
             state.error = action.payload;
         })
+
+
+        .addCase(UpdateProfileRequest, (state) => {
+            state.loading = true;
+        })
+        .addCase(UpdateProfileSuccess, (state, action) => {
+            state.loading = false;
+                state.message = action.payload;
+
+        })
+        .addCase(UpdateProfileFailure, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+
+
+        .addCase(UpdatePasswordRequest, (state) => {
+            state.loading = true;
+        })
+        .addCase(UpdatePasswordSuccess, (state, action) => {
+            state.loading = false;
+            state.message =  action.payload;
+            state.isAuthenticated = false;
+
+        })
+        .addCase(UpdatePasswordFailure, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+
+
+
+
+        .addCase(DeleteProfileRequest, (state) => {
+            state.loading = true;
+        })
+        .addCase(DeleteProfileSuccess, (state, action) => {
+            state.loading = false;
+            state.message =  action.payload;
+
+        })
+        .addCase(DeleteProfileFailure, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+
+        .addCase(ForgotPasswordRequest, (state) => {
+            state.loading = true;
+        })
+        .addCase(ForgotPasswordSuccess, (state, action) => {
+            state.loading = false;
+            state.message =  action.payload;
+
+        })
+        .addCase(ForgotPasswordFailure, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+
+        .addCase(ResetPasswordRequest, (state) => {
+            state.loading = true;
+        })
+        .addCase(ResetPasswordSuccess, (state, action) => {
+            state.loading = false;
+            state.message =  action.payload;
+
+        })
+        .addCase(ResetPasswordFailure, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+
+
         .addCase(LoadUserRequest, (state) => {
             state.loading = true;
         })
@@ -141,5 +232,37 @@ export const allUsersReducer = createReducer(
             .addCase(clearErrors, (state) => {
                 state.error = null;
             });
+    }
+);
+
+
+
+
+////////////////////////////////
+
+const UserProfileRequest = createAction("UserProfileRequest");
+const UserProfileSuccess = createAction("UserProfileSuccess");
+const UserProfileFailure = createAction("UserProfileFailure");
+// const clearErrors = createAction('clearErrors')
+
+export const userProfileReducer = createReducer(
+    initialState,
+
+    (builder) => {
+        builder
+            .addCase(UserProfileRequest, (state) => {
+                state.loading = true;
+            })
+
+            .addCase(UserProfileSuccess, (state, action) => {
+                state.loading = false;
+                state.user = action.payload;
+            })
+
+            .addCase(UserProfileFailure, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
+
     }
 );

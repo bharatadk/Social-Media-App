@@ -157,3 +157,34 @@ export const myPostsReducer = createReducer(initialState,
         })
 
 });
+
+
+
+////////////////
+
+const UserPostsRequest = createAction("UserPostsRequest");
+const UserPostsSuccess = createAction("UserPostsSuccess");
+const UserPostsFailure = createAction("UserPostsFailure");
+
+
+export const userPostsReducer = createReducer(initialState, 
+
+    (builder) => {
+
+        
+    builder
+
+        .addCase(UserPostsRequest, (state) => {
+            state.loading = true;
+        })
+        .addCase(UserPostsSuccess, (state, action) => {
+            state.loading = false;
+            state.posts  = action.payload;
+        })
+        .addCase(UserPostsFailure, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+
+
+});

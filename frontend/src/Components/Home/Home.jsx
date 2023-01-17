@@ -82,6 +82,7 @@ export const Home = () => {
             </div>
 
             <div className="homeright">
+                <h3 style={{marginLeft:"15px", marginBottom:"10px"}}>Friends</h3>
                 {users && users.length > 0 ? (
                     users.map((user) => (
                         <User

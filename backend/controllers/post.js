@@ -308,7 +308,6 @@ export const addComment = async (req, res) => {
 //deleteComment
 export const deleteComment = async (req, res) => {
     try {
-        console.log('444',req.body)
         const post = await Post.findById(req.params.id);
         if (!post) {
             return res.status(500).json({

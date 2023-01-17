@@ -6,7 +6,7 @@ import {
 	getMyPosts,
 } from "../../Actions/Post.js"
 import {
-    logOut,
+    logOut,deleteMyProfile
 } from "../../Actions/User.js"
 import {Post} from "../Post/Post.jsx";
 import {User} from "../User/User.jsx";
@@ -30,8 +30,9 @@ export const Account = () => {
     const [followingToggle,setFollowingToggle] = useState(false)
     const [followersToggle,setFollowersToggle] = useState(false)
 
-const deleteProfileHandler = () =>{
-
+const deleteProfileHandler = async () =>{
+  await dispatch(deleteMyProfile())
+await dispatch(logOut())
 }
 
 
