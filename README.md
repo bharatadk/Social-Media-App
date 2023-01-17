@@ -15,3 +15,8 @@ https://user-images.githubusercontent.com/51126350/212901445-101b20cd-526f-4b04-
 - Search Friends
 - View who liked or commented on the post
 
+## clone or download
+```terminal
+$ git clone https://github.com/amazingandyyy/mern.git
+$ yarn # or npm i
+```
