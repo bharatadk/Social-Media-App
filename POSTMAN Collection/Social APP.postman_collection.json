@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "4aed8ad4-8ba5-41f0-bebf-04fb8949055f",
+		"name": "Social APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Abhishek\",\r\n    \"email\":\"temp@gmail.com\",\r\n    \"password\":\"dikhrhana\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"bharatadk.on@gmail.com\",\r\n    \"password\":\"newPassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\":\"123456\",\r\n    \"newPassword\":\"abcdef\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/update/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"update",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"BharatAdk\",\r\n    \"email\":\"bharatdk.on@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/update/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"update",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/delete/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "follow User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/follow/63ba9595771d8191ed044620",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"follow",
+								"63ba9595771d8191ed044620"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "myProfile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/myProfile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"myProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllusers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userProfile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/user/63ba9595771d8191ed044620",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"63ba9595771d8191ed044620"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"bharatadk.on@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/forgot/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"forgot",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"newPassword\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/password/reset/e29a266c52cf4d9a28d5ebd3ccdd31dff84e9ff0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"password",
+								"reset",
+								"e29a266c52cf4d9a28d5ebd3ccdd31dff84e9ff0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "create post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caption\":\"this is my caption or post in social media \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like-and-unlike",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/63ba7c20066f3e5875859099",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"63ba7c20066f3e5875859099"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/63ba7c20066f3e5875859099",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"63ba7c20066f3e5875859099"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all Post of Followings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/v1/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Caption",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"caption\":\"new caption , hello world\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/63baa5325b6165ddb9640639",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"63baa5325b6165ddb9640639"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add and Edit comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\":\"Edited 🤩 3rd comment\",\r\n    \"comment_Id\":\"63bb88251a57299df74598b2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/comment/63baa5325b6165ddb9640639",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"comment",
+								"63baa5325b6165ddb9640639"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment_Id\":\"63bb8b1ed722a4f9b8191faf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/v1/post/comment/63baa5325b6165ddb9640639",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"post",
+								"comment",
+								"63baa5325b6165ddb9640639"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
