@@ -35,36 +35,27 @@ function App() {
 		</div>
 			<div className="rightSpace">
 			<Routes>
-			{isAuthenticated ? (
-				<>
-
-
-			<Route path = "/" element={ <Home/> } />
-			<Route path = "/account" element={ <Account/> } />
-			<Route path = "/newPost" element={ <NewPost/> } />
-			<Route path = "/update/profile" element={ <UpdateProfile/> } />
-			<Route path = "/update/password" element={ <UpdatePassword/> } />
-			<Route path = "/User/:id" element={ <UserProfile/> } />
-			<Route path = "/search" element={ <Search/> } />
-			<Route path = "*" element={ <NotFound/> } />
-
-
-				
-
-			</>
-
-		)
-
-
-				:(	<>
-					<Route path = "*" element={ <Login/> } />
-					<Route path = "/register" element={ <Register/> } />
-					<Route path = "/forgot/password" element={ <ForgotPassword/> } />
-					<Route path = "/reset/password/:token" element={ <ResetPassword/> } />
-					</> )}
+			{isAuthenticated ? 
+				(<>
+				<Route path = "/" element={ <Home/> } />
+				<Route path = "/account" element={ <Account/> } />
+				<Route path = "/newPost" element={ <NewPost/> } />
+				<Route path = "/update/profile" element={ <UpdateProfile/> } />
+				<Route path = "/update/password" element={ <UpdatePassword/> } />
+				<Route path = "/User/:id" element={ <UserProfile/> } />
+				<Route path = "/search" element={ <Search/> } />
+				<Route path = "*" element={ <NotFound/> } />
+				</>)
+			:
+				(<>
+				<Route path = "*" element={ <Login/> } />
+				<Route path = "/register" element={ <Register/> } />
+				<Route path = "/forgot/password" element={ <ForgotPassword/> } />
+				<Route path = "/reset/password/:token" element={ <ResetPassword/> } />
+				</> )
+			}
 			</Routes>
 			</div>
-
 		</div>			
 		</Router>
 	)
